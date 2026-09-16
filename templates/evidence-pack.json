@@ -1,0 +1,29 @@
+{
+  "task_id": "T-001",
+  "review_round": 1,
+  "implementation_summary": "实际改动与理由",
+  "changed_files": [],
+  "acceptance_results": [
+    {
+      "id": "AC01",
+      "status": "NOT_VERIFIED",
+      "evidence": []
+    }
+  ],
+  "commands": [],
+  "raw_outputs": [],
+  "exit_codes": [],
+  "screenshots": [],
+  "renders": [],
+  "diffs": [],
+  "known_issues": [],
+  "unverified_items": [
+    "尚未执行验证"
+  ],
+  "deviations": [],
+  "material_manifest": "material-manifest.json",
+  "implementation_complete": false,
+  "artifacts": [],
+  "required_evidence_results": [],
+  "open_decisions": []
+}

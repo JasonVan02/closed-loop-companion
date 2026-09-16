@@ -1,0 +1,32 @@
+{
+  "task_id": "T-001",
+  "title": "当前任务标题",
+  "goal": "可观察目标",
+  "context": "事实、项目定位与已知背景",
+  "requirements": [],
+  "constraints": [],
+  "non_goals": [],
+  "acceptance_criteria": [
+    {
+      "id": "AC01",
+      "criterion": "明确可检查的行为或产物",
+      "verification": "检查方法",
+      "origin": "user"
+    }
+  ],
+  "required_evidence": [],
+  "known_risks": [],
+  "open_decisions": [],
+  "review_mode": "FULL",
+  "minor_findings_block": true,
+  "authorized_material_scope": {
+    "destination": "确认后的真实ChatGPT canonical ID",
+    "purpose": "当前任务独立审查",
+    "files": [],
+    "approval_evidence": "对应用户授权记录",
+    "excluded": [
+      "SECRET",
+      "无关项目"
+    ]
+  }
+}

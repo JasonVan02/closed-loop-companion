@@ -1,0 +1,16 @@
+{
+  "task_id": "T-001",
+  "review_round": 1,
+  "included": [],
+  "referenced_but_not_included": [
+    {
+      "reason": "原因",
+      "affected_criteria": [
+        "AC01"
+      ],
+      "name": "被引用未提供的文件"
+    }
+  ],
+  "unavailable_evidence": [],
+  "note": "填写清单后用prepare生成机器可验证的传输manifest；空集合不证明材料完整。"
+}

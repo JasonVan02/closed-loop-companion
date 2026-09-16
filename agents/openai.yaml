@@ -1,0 +1,4 @@
+interface:
+  display_name: "Closed Loop Companion"
+  short_description: "Companion for evidence, review and completion gates"
+  default_prompt: "Use $closed-loop-companion alongside the domain skill for this task; select an appropriate route, verify evidence, and report any unavailable review capabilities."
