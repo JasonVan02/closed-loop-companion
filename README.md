@@ -1,364 +1,254 @@
-# Closed Loop Companion
+# AI Operating Partner
 
-**Make agents prove the work before calling it done.**
+`ai-operating-partner`
 
-Companion workflow skill for complex agent tasks.
+**「给 AI 合伙人身份、有限资本和长期利益，让它学会判断一件事到底值得投入多少智能。」**
 
-Built for Codex workflows, with independent ChatGPT review when supported.
+> Ownership × Finite Intelligence Capital × Long-Term Alignment
 
-A companion workflow skill for Codex that adds structured execution,
-evidence-based verification, independent ChatGPT review, repair loops,
-and completion gates to complex tasks.
+Agent Skill · Capital-Aware · ChatGPT + Codex · Evidence-Based
 
-**让 Agent 不只是“说做完了”，而是证明它真的完成了。**
+Current release: `3.0.0 Candidate / R3`
 
-为复杂 Codex 任务增加结构化执行、证据验证、真实 ChatGPT 独立审查、修正闭环和完成门禁。
-当前主要面向 Codex 工作流，并在环境支持时使用真实 ChatGPT 做独立审查。
+Status: `LOCAL_REVIEW_ONLY` · Real ChatGPT Acceptance Review Pending
 
-> Closed Loop Companion is an independent open-source project.
-> It is not affiliated with, endorsed by, or sponsored by OpenAI.
-> ChatGPT, Codex, and OpenAI are trademarks of OpenAI.
+## 1. Hero / 一句话定位
 
-**Type:** Companion Skill · **Category:** Workflow / Quality / Review · **Release:** v1.0.0
+> Give AI ownership, finite intelligence capital, and long-term incentives — then let it decide how much intelligence each task deserves.
 
-These are this package's descriptive labels, not marketplace registration fields.
+A capital-aware AI operating partner that allocates finite intelligence by value and risk, executes through ChatGPT + Codex, and optimizes for long-term outcomes.
 
-| In 30 seconds / 快速了解 | Answer / 答案 |
+中文定位：**AI 经营合伙人**。合伙人是工作责任模型，不表示人格、股权、雇佣关系或额外权限。目标、重大取舍、授权与最终验收仍由用户决定。
+
+## 2. 这是什么
+
+AI Operating Partner 是独立、可移植的 Agent Skill。它先判断任务值得投入多少有限智能，再通过可核验的执行闭环完成工作。
+
+开发、设计、营销或架构 Skill 提供领域方法；AI Operating Partner 配置投入，管理执行、证据、审查、修复与交付。选中后，Operating Partner 身份在 DIRECT / LIGHT / FULL 中始终启用；它不是每个任务都会加载的全局 hook。
+
+## 3. 3.0 更新了什么
+
+v3 在原有闭环上加入 Operating Partner identity、Intelligence Capital、按价值与风险配置投入、边际价值停止规则、STOP_LOSS、验证储备及轻量 Capital Accounting / Learning Signal。
+
+本次仅将正式 Skill ID 更新为 `ai-operating-partner`，没有重新设计 v3。DIRECT / LIGHT / FULL、Evidence、Independent Review、Repair、Completion Gate、Authorization、V1 协议和现有测试语义保持不变。PM Skills、Thinking Frameworks 与 evaluator 是研发工具，不是运行依赖。
+
+## 4. Ownership
+
+AI 对工作的长期结果承担协作责任：理解真实目标，完成可用结果，提供足够证据和交接信息。长篇分析、大量搜索或多轮 Review 本身不代表价值。Ownership 不扩大授权，也不代替用户决策。
+
+## 5. Finite Intelligence Capital
+
+Reasoning、context、tokens、model usage、tool calls、Codex execution、testing、review、rework、human attention、time 与 future liability 都是有限资本；搜索、子代理、外部 API 和生成同样有机会成本。
+
+追加投入应可能改变决策、实质风险、架构或尚未满足的质量门禁。有实测数据才记录用量；否则采用 Low / Medium / High / Critical 等有依据的相对判断，不虚构 IC、概率或美元精度。详见按需读取的 [Capital Allocation](references/capital-allocation.md)。
+
+## 6. Long-Term Alignment
+
+目标是 **Maximize Long-Term Risk-Adjusted Value**，而非最低成本、最大工作量或无限质量。
+
+> The goal is not to make AI work less.
+>
+> The goal is to make every unit of intelligence worth spending.
+
+必要理解、规划与关键验证帮助减少可避免返工。不能为小额当前节约制造明显的技术、设计或维护负债，也不能借长期价值无限重构。细则见 [Operating Partner](references/operating-partner.md)。
+
+## 7. DIRECT / LIGHT / FULL
+
+三个等级配置资本，不切换身份。沿用原有路由条件与用户指定的审查范围：
+
+| 等级 | 判断 | 执行与验证 |
+|---|---|---|
+| DIRECT | 小范围、低风险低不确定性、高可逆、低返工成本 | 实施、针对性实查、简报；无大型计划、专门账本或独审，除非用户要求 |
+| LIGHT | 中等且有界、部分不确定性、可充分本地验证 | Contract Lite、实施、验证、独立内部审查、简报 |
+| FULL | 高风险、重大价值或范围、架构/核心数据/安全影响、昂贵失败，或明确完整/独立/ChatGPT 审查 | Contract、实施、验证、独立内部审查、Evidence、真实 ChatGPT、修正复核、Gate |
+
+不按文件数机械升级。共享布局/组件跨使用位置需要核对一致性时至少 LIGHT，纯批量文案仍可 DIRECT。明确独立/ChatGPT 审查默认 FULL；明确仅本地独审按该范围执行。不能为绕过 FAIL、缺工具或权限降级。详见 [Execution Modes](references/execution-modes.md)。
+
+## 8. STOP_LOSS
+
+同一根因连续两次实质性修复仍未解决时，暂停机械追加补丁，重评目标、需求、假设、架构、工具、实现策略和根因。
+
+第二次失败揭示新的明确原因时，记录新证据、下一检验及有界继续理由，不是一到两次就放弃。STOP_LOSS 是中断状态，不是第四执行模式或新的 Review status。详见 [Stop Loss](references/stop-loss.md)。
+
+## 9. ChatGPT × Codex 如何分工
+
+| 参与方 | 职责 |
 |---|---|
-| What is it? / 做什么？ | Governs how important work is executed, proven, reviewed and handed back. / 管理重要任务的执行、证据、审查与交付。 |
-| When should I use it? / 何时使用？ | Meaningful behavior changes, difficult verification, architectural consequences or explicit independent review. / 有明显影响、难验证、涉及架构或明确要求独立审查时。 |
-| When should I skip it? / 何时不用？ | Typos, formatting and other low-risk mechanical edits. / 拼写、格式等低风险机械修改。 |
-| How does it combine? / 如何组合？ | Domain Skill handles domain decisions; this skill handles the execution and review lifecycle. / 领域 Skill 管业务方法，本 Skill 管执行与审查流程。 |
+| User | 目标、重大取舍、授权与最终验收 |
+| ChatGPT | 理解模糊需求、比较方案、审查架构与是否做对东西；FULL 的真实独立外审 |
+| Codex | 读取项目、校准 Contract、实施、验证、协调证据与审查、修复 |
+| Domain Skill | 对应领域的方法和质量标准 |
 
-Real ChatGPT review requires compatible tools and access. Without them, the result is `LOCAL_REVIEW_ONLY`; a FULL gate requiring external review remains unmet.
+Codex 子代理不能冒充真实 ChatGPT。外审需要当前工具、获准目的地、精确材料范围和完整回读。缺能力时继续已授权本地工作，报告 `LOCAL_REVIEW_ONLY` 与原 FULL Gate `BLOCKED`，不声称通过原标准。
 
-## What it is
+## 10. Execution Closed Loop
 
-This skill does not teach Codex how to build a specific product. It governs how complex work is executed, reviewed, verified, repaired, and handed back to the user. In Codex workflows, this means implementation is not treated as complete merely because Codex reports success.
-
-它不负责告诉 Codex“业务应该怎么做”，而是约束复杂任务“应该如何可靠地完成”。It wraps the execution lifecycle, not the domain reasoning. It is a workflow companion, not a replacement for development, design, marketing, testing or architecture expertise.
-
-## Why it exists / What problem does this solve?
-
-An implementation can finish while missing the user's intent. Tests may pass even though a design looks wrong, an architectural approach keeps accumulating patches, or required evidence is absent. This skill adds structured checks between implementation and user acceptance. It helps detect such gaps; it does not guarantee correctness.
-
-实现完成、测试通过，不等于目标达成。闭环要求对照原始目标和实际产物检查，而不是只认可执行者的总结。
-
-## Quick Start
-
-After [installation](#installation), send a task like this in Codex:
+Closed Loop 是 **AI Operating Partner 管理下的 Execution Layer**。
 
 ```text
-Use $closed-loop-companion to implement this task.
-
-Goal:
-Add CSV export to the transaction page.
-
-Requirements:
-- Export current filtered transactions.
-- Preserve current sorting.
-- UTF-8 CSV.
-- No server-side persistence.
-
-Return it for my acceptance only after the FULL review reaches
-READY_FOR_USER_ACCEPTANCE. If real ChatGPT review is unavailable,
-report LOCAL_REVIEW_ONLY and the unmet gate.
+User Goal
+↓
+Operating Partner Identity
+↓
+Value / Risk / Uncertainty / Rework Cost
+↓
+Capital Allocation
+↓
+DIRECT / LIGHT / FULL
+↓
+ChatGPT + Codex Execution Closed Loop
+↓
+Evidence
+↓
+Independent Review
+↓
+Repair / STOP_LOSS
+↓
+Completion Gate
+↓
+Capital Accounting / Learning Signal
 ```
 
-```text
-使用 $closed-loop-companion 完成这个任务。
+Claim is not Evidence：保留实际命令、原始输出、退出码、diff 及任务需要的真实截图或 Render。Findings 分为 VALID / FALSE_POSITIVE / MATERIAL_MISSING / DECISION_REQUIRED，再修问题、提供反证、补材料或请求决定。
 
-目标：为交易页面增加 CSV 导出。
-要求：
-- 导出当前筛选结果
-- 保留排序
-- UTF-8 CSV
-- 不新增服务端持久化
+FULL 仍要求实现、全部 AC、必需证据、独立内部审查及当前真实 ChatGPT 审查通过，且无阻塞问题与待定方向，才能到 `READY_FOR_USER_ACCEPTANCE`。只有用户明确接受对应版本才是 `USER_ACCEPTED`。材料传输必须绑定文件、目的地与用途；秘密和凭据永不发送。
 
-只有完整闭环达到 READY_FOR_USER_ACCEPTANCE 后再提交给我验收。
-真实 ChatGPT 不可用时，明确报告 LOCAL_REVIEW_ONLY 和未满足的门禁。
-```
+详见 [架构](references/architecture.md)、[Evidence](references/evidence-pack.md)、[Authorization](references/authorization.md)、[Completion Gate](references/completion-gate.md)。
 
-Codex first inspects the project, clarifies material gaps and checks capabilities. Routine implementation choices stay with Codex; important product decisions and new material-sharing authorization stay with you.
+## 11. Capital Discipline
 
-## When to use / 何时使用
+证据够用时停搜，结论稳定时停止重复推理；工具须完成必要动作或回答具体问题，局部缺陷优先局部修复。只有相关变更、证据冲突或所需独立覆盖才追加 Review。未通过的质量门禁不能以节约为由跳过。
 
-Consider the companion when review adds meaningful value:
+先保留必要测试、审查与合理修复资源，再删可选美化。能从 repo 取得答案时先取证；重大取舍、新授权及不可逆行为仍需用户决定。实际 Gate 满足后停止可选优化。
 
-| Situation | 中文 |
+FULL 收尾或止损时简记账本，LIGHT 仅记录重要偏差，DIRECT 没有专门资本报告。Learning Signal 是带证据的待验证假设，不是自动训练或自动修改全局政策。详见 [Capital Ledger](references/capital-ledger.md)。
+
+## 12. 一个完整案例
+
+以下是流程示例，不是新执行的生产外审证据。
+
+用户要求“增加交易 CSV 导出，保留筛选、排序与 UTF-8，不新增服务端持久化；提交验收前做完整真实 ChatGPT 审查”。
+
+1. 识别目标、风险与明确外审要求，选择 FULL，为必要测试和审查保留资源。
+2. Codex 读仓库、定义可观察 AC、实施导出，实际检查筛选、排序、编码与不持久化。
+3. 独立内部 Reviewer 对照原始文件和输出；Codex 冻结获准材料的当前快照。
+4. 有真实且获准的 ChatGPT 通道时发送、完整回读并核对当前轮；缺通道则保留本地结果，原 FULL Gate 仍 BLOCKED。
+5. 对有效问题局部修复并运行相关回归；同根因持续无效则 STOP_LOSS 重评。
+6. 实际 Gate 满足后提交用户验收，简记投入偏差与学习信号，不再追加无价值优化。
+
+更多例子：[简单功能](examples/simple-feature.md)、[架构调整](examples/architecture-change.md)、[UI 审查](examples/ui-review.md)、[Skill 创建](examples/skill-build.md)、[领域组合](examples/domain-composition.md)。
+
+## 13. 当前验证结果
+
+当前版本：**3.0.0 Candidate / R3**。品牌迁移不改变真实验收状态：
+
+| 项目 | 状态 |
 |---|---|
-| New features with meaningful behavior changes | 有明显行为变化的新功能 |
-| Architecture or data-model changes | 架构或数据模型调整 |
-| Large refactors with behavior or regression risk | 存在行为或回归风险的大型重构 |
-| Multi-file work with non-trivial acceptance criteria | 验收复杂的多文件实现 |
-| High-fidelity UI or important visual work | 高保真 UI 或重要视觉交付 |
-| Games, 3D or rendering where technical success cannot establish visual quality | 技术成功不能证明视觉质量的游戏、3D、渲染任务 |
-| New Skill creation | 新 Skill 创建 |
-| Complex bugs with regression risk | 有回归风险的复杂 Bug |
-| Repeated failures or accumulating patches | 反复失败或不断累积补丁 |
-| Explicit independent ChatGPT review | 明确要求真实 ChatGPT 独立审查 |
-| Formal deliverables before user acceptance | 用户验收前的重要正式交付 |
+| Implementation | PASS |
+| Regression | PASS — 60/60 original + 6/6 capital = 66/66 |
+| Packaging | PASS — 以本次候选包的独立校验记录与 SHA 为准 |
+| Behavioral Evidence | MIXED |
+| Real ChatGPT Review | PENDING |
+| Release Gate | BLOCKED / LOCAL_REVIEW_ONLY |
 
-Judge impact, risk, ambiguity, verification difficulty, architectural consequence, user importance and reversibility. File count is a weak signal: three files, 100 lines, or having tests does not automatically mean FULL.
+改名前冻结的 A/B 主场景成绩为原版 **44/45**、R3 **42/45**；低风险两臂 **27/27**，高风险两臂 **9/9**。低风险“非缓存输入 + 输出”代理投入下降 **14.7%**，但工具项增加 **9.7%**、累计运行时间增加 **1.5%**。不能声称 v3 全面胜出、真实 ROI 或更快完成。
 
-## When not to use / 何时不必使用
+100 个比较观察含 12 个复用原版观察；连同被替代 R2，共 112 次唯一 evaluator 父运行，嵌套子调用未完整计量。模式扣分与来源不足均保留。历史评测、Critic、旧 SHA 与原始证据保持冻结；本次只验证身份、现有 66 项测试和新包，不重写或重跑 behavioral evaluator。迁移记录位于维护工作区的 `release-audit/v3-operating-partner/validation/brand-migration/`，不随 Skill 安装。
 
-- Typos / 拼写错误。
-- Simple local renames without behavior or public API changes / 不改行为或公共接口的局部更名。
-- Formatting-only changes / 纯格式调整。
-- Trivial copy edits / 轻微文字修订。
-- Obvious one-line fixes with verified low impact / 已确认影响很小的单行修复。
-- Low-risk mechanical changes / 低风险机械修改。
-- Tasks with no meaningful review value / 没有实质审查价值的任务。
+## 14. 当前限制
 
-The skill is intentionally not designed to wrap every Codex action in a heavy review loop. An explicitly invoked typo task can still use DIRECT. An explicit request for full independent review overrides that default. A one-line permissions change may still need FULL because its impact matters more than its size.
+**Fully dynamic per-subtask Agent Dispatch remains future work.** 当前具备执行等级和有界角色分工，未实现完整动态的逐子任务 Agent Routing。
 
-## How it works
+- 当前不是 Stable，真实 ChatGPT Acceptance Review 尚未完成。
+- Intelligence Capital 不能精确统一计量；没有真实美元 ROI 或自动长期学习。
+- A/B 是有限合成样本与显式调用，存在缓存、顺序、开发后回归及子审查来源捕获限制；没有自然触发准确性保证。
+- ChatGPT 通道、内部子代理与图像可见性依赖环境；路径、哈希和摘要不能证明 Reviewer 看过图像。
+- 可选 capital_state 的机器校验不能证明完整根因历史或语义充分性；测试通过不等于独审通过。
+- 没有任意 reviewer 后端、Claude/Gemini adapter、CI-native reviewer、GitHub Actions 集成或永久后台服务；Windows 未做完整端到端验证。
+- Review 不是正确性保证；必要授权和用户验收不能省略。详见 [Known Limitations](references/known-limitations.md)。
 
-```text
-Goal and boundaries → project inspection → implementation → verification
-→ evidence → independent review → finding triage → repair and recheck
-→ completion gate → user acceptance
-```
+## 15. 怎么安装
 
-Findings are classified as `VALID`, `FALSE_POSITIVE`, `MATERIAL_MISSING` or `DECISION_REQUIRED`. Fix proven defects, submit counterevidence for false positives, supply missing material, and return consequential decisions to the user. Repeated failure of the same criterion triggers direction reassessment rather than endless patching.
+安装 ZIP 内含 `SKILL.md` 的 **ai-operating-partner** 目录。使用宿主实际发现的位置，例如用户级 `~/.agents/skills/` 或项目级 `.agents/skills/`；部分既有环境使用 `~/.codex/skills/`。只保留一个活动安装。
 
-问题需先分类，再修复、反证、补证或请用户决策；同一验收项连续失败时先复查方向。
-
-## Three invocation modes / 三种调用方式
-
-### A. Explicit invocation
-
-```text
-Use $closed-loop-companion for this task.
-使用 $closed-loop-companion 执行这个任务。
-```
-
-The clearest way to select this companion. Selection does not by itself force FULL: the task's needs and your stated review requirements determine the route.
-
-### B. Combined invocation
-
-```text
-Use $marketing-creative-director to design the campaign concept.
-Use $closed-loop-companion to govern execution and independent review.
-```
-
-```text
-使用 $godot-game-development 完成实现，
-同时使用 $closed-loop-companion 做执行闭环和独立审查。
-```
-
-Domain skill names in examples must be replaced with skills installed in your environment. The companion does not install them or assume they exist.
-
-### C. Conditional companion
-
-Codex can consider this skill when the task has substantial impact, difficult verification or an explicit review requirement. Automatic discovery remains enabled, but selection depends on the host and the task; it is not a universal hook.
-
-自然语言也可以表达意图：
-
-```text
-Build this with an independent ChatGPT review before completion.
-Use a closed-loop implementation process.
-Do not self-approve this task. Send the authorized final evidence to ChatGPT.
-Implement, verify, independently review, repair if needed, then return it for my acceptance.
-
-这个任务走完整闭环。
-完成后让真实 ChatGPT 独立审查，不要自己宣布完成。
-实现、验证、外审、修正后再提交给我验收。
-这个任务比较重要，使用闭环审查模式。
-```
-
-Use explicit invocation if discovery misses your intent. [Invocation guidance](references/invocation.md) explains trigger boundaries. These prompts request a workflow; they do not authorize unspecified private files to be uploaded.
-
-## FULL / LIGHT / DIRECT
-
-| Route | What happens / 会做什么 |
-|---|---|
-| DIRECT | Very small, low-risk work: implement and inspect the change. / 实施并针对性核验。 |
-| LIGHT | Moderate local work: verify and obtain independent internal review. / 本地验证与独立内部检查。 |
-| FULL | Important or complex work: package evidence and obtain real ChatGPT review, then repair/recheck as needed. / 证据包、真实外审、必要修正复核。 |
-
-Missing tools do not silently turn a requested FULL task into a successful LIGHT task. See [architecture](references/architecture.md) for full routing and state rules.
-
-## Example workflows
-
-Short examples show the request, route and honest final state:
-
-- [CSV export and a typo](examples/simple-feature.md)
-- [Architecture change](examples/architecture-change.md)
-- [High-fidelity UI](examples/ui-review.md)
-- [Skill creation](examples/skill-build.md)
-- [Marketing with a domain skill](examples/domain-composition.md)
-
-## Using with other Skills / Works with domain skills
-
-| Domain | Example pairing |
-|---|---|
-| Product | `$product-development` + `$closed-loop-companion` |
-| UI | `$ui-design` + `$closed-loop-companion` |
-| Godot | `$godot-game-development` + `$closed-loop-companion` |
-| Marketing | `$marketing-creative-director` (or your installed marketing skill) + `$closed-loop-companion` |
-
-These domain names are illustrative, not bundled dependencies. Use your installed equivalents.
-
-**Domain skill:** what good work looks like and how to produce it in that domain.
-**Closed Loop Companion:** how that work is executed, proven, reviewed, repaired and handed off.
-
-Domain Skill decides what good work looks like. Closed Loop Companion governs how that work is executed, proven, reviewed, repaired and handed off.
-
-领域 Skill 负责业务方法和领域质量标准；Closed Loop Companion 负责执行、证据、独立审查、修正和验收门禁。
-
-例如营销 Skill 决定营销策略；Closed Loop 检查目标是否明确、策略产物是否有证据、是否完成独立审查。它不接管领域推理，也不越过用户的范围与取舍。
-
-## Independent ChatGPT review
-
-FULL starts with [capability detection](references/capabilities.md): identify currently available tools, an accessible real ChatGPT destination, exact send/readback support, independent internal review and any required visual channel. Tool names, accounts, models, message limits and session creation vary by environment.
-
-If supported and authorized, Codex coordinates delivery and reads the real reply. An internal Codex subagent is not a real ChatGPT reviewer. A successful tool call, an idle task or an old PASS is not proof of this round's review.
-
-If unavailable, continue useful authorized local work and report:
-
-```text
-LOCAL_REVIEW_ONLY
-Independent real ChatGPT review unavailable in this environment.
-READY_FOR_USER_ACCEPTANCE requiring external review was not reached.
-```
-
-`LOCAL_REVIEW_ONLY` describes the available review coverage, not a new CLI route or a passing FULL gate. Do not use it to relabel a failed external review. Only explicit user agreement can revise the acceptance standard; preserve the unmet original standard and never claim an external PASS.
-
-## Evidence-based review / Claim is not Evidence
-
-“Tests passed” is a claim. Useful evidence includes the actual command, working directory, exit code and unedited output. This is an illustrative record, not this package's test result:
-
-```text
-Command: npm test
-Working directory: the project under review
-Exit code: 0
-Result: 64/64 passed
-Raw output: attached execution log
-```
-
-“The UI matches the design” requires a design reference, actual screenshot, viewport and corresponding implementation. A local image path or successful build does not prove a reviewer saw the visual result.
-
-源码、diff、真实执行记录和可见图像支持判断；执行者的总结不能代替它们。See [evidence requirements](references/evidence-pack.md).
-
-## Completion Gate
-
-For FULL:
-
-```text
-Implementation complete + evidence complete + all acceptance criteria pass
-+ independent internal review passes + current real ChatGPT review passes
-+ no unresolved blocking findings or decisions
-= READY_FOR_USER_ACCEPTANCE
-```
-
-The helper validates identities, hashes, required evidence and review provenance. It cannot establish that a design is good or a test suite is sufficient. LIGHT and DIRECT use their documented local gates; the CLI `gate` command only supports FULL. [Full rules](references/completion-gate.md).
-
-## Authorization & privacy
-
-Evidence transmission requires authorization for the specific files, destination and purpose. A prior task's approval does not cover the next task. Secrets and credentials are excluded even from otherwise approved files. Content scanning is a heuristic and needs human/agent judgment.
-
-This package contains instructions, synthetic tests and local helpers. It includes no reviewer account, session, private audit or credentials. The Python helper does not connect to ChatGPT; the host performs authorized handoff. [Authorization rules](references/authorization.md).
-
-## What READY_FOR_USER_ACCEPTANCE means
-
-```text
-Implementation finished ≠ Task accepted
-READY_FOR_USER_ACCEPTANCE ≠ USER_ACCEPTED
-```
-
-READY means the agreed checks for the declared route have passed and the result is ready for your judgment. It never means you already approved it. Only your explicit acceptance of the delivered version establishes `USER_ACCEPTED`.
-
-“可提交验收”与“用户已验收”是两回事。The skill does not replace the user's final decision.
-
-## Limitations
-
-The architecture is designed as a reusable review-governance pattern, while v1.0.0 is implemented and tested primarily around Codex workflows and supported ChatGPT review. The broader “agents” slogan does not claim support for arbitrary agents or reviewers.
-
-v1.0.0 includes no Claude/Gemini adapter, arbitrary-reviewer backend, CI-native reviewer, GitHub Actions integration or background orchestration service. Windows has not been fully tested; Python portability is not a claim of end-to-end Windows compatibility.
-
-- Real ChatGPT handoff and independent subagents depend on available environment capabilities.
-- Natural-language discovery can miss or misclassify a task; explicit invocation is more predictable.
-- Text delivery does not establish image visibility; visual work needs verified visual evidence.
-- Review helps detect issues but is not a correctness guarantee or formal verification.
-- No promise of every-account compatibility, a particular model or permanent background operation.
-- Consent, consequential decisions and final acceptance may require user participation.
-
-See [known limitations](references/known-limitations.md). 本 Skill 不承诺零人工介入、无 Bug 或自动替代用户验收。
-
-## Installation
-
-Install the directory containing `SKILL.md`, not the ZIP itself. Current Codex documentation lists `~/.agents/skills` for user skills and `.agents/skills` for repository skills. Use the location your host discovers; some existing installations use `~/.codex/skills`. Avoid duplicate copies with the same name. [Official skill documentation](https://learn.chatgpt.com/docs/build-skills).
-
-From a downloaded ZIP on macOS/Linux:
+macOS/Linux 全新安装示例：
 
 ```sh
-mkdir -p ./skill-unpack
-unzip closed-loop-companion-v1.0.0.zip -d ./skill-unpack
+# 在下载目录执行，先验证候选包。
+shasum -a 256 -c SHA256SUMS
+mkdir ./skill-unpack
+unzip ai-operating-partner-v3.0.0-candidate-r3.zip -d ./skill-unpack
 mkdir -p "$HOME/.agents/skills"
-# For a fresh install; back up an existing same-name directory before updating.
-test ! -e "$HOME/.agents/skills/closed-loop-companion" && \
-  cp -R ./skill-unpack/closed-loop-companion "$HOME/.agents/skills/"
+test ! -e "$HOME/.agents/skills/ai-operating-partner" && \
+  cp -R ./skill-unpack/ai-operating-partner "$HOME/.agents/skills/"
 ```
 
-From a Skill directory, copy that entire directory to the chosen skills folder. For project-only use, copy it into your repository's `.agents/skills/`. For Windows, the same directory layout can be used, but installation and end-to-end handoff have not been fully tested.
+已有安装先备份，将 Project Evolution 中列出的旧名目录移出**所有宿主发现目录**后再安装新目录；不要并装三个名称。旧名仅作历史说明，不声明 runtime aliases。本文不会自动移动全局安装。
 
-Check that the skill appears in your host's skill list, then invoke `$closed-loop-companion`. If it does not refresh, restart the client. Installation enables the instructions; it does not add ChatGPT handoff tools or grant account access.
+刷新或重启宿主后确认显示 **AI Operating Partner**，通过 `$ai-operating-partner` 调用。安装不附带真实外审账号、工具或传输授权。
 
-The local helper and tests require **Python 3.9+**, using only its standard library. From the installed Skill directory:
+运行时需 Python **3.9+** 和标准库，在 Skill 根目录执行：
 
 ```sh
 python3 -m unittest discover -s tests -v
 python3 scripts/closed_loop.py --help
 ```
 
-解压后安装包含 `SKILL.md` 的整个目录；升级前保留旧副本，避免两个发现路径同时安装同名 Skill。
+`scripts/closed_loop.py` 继续实现 Execution Closed Loop，V1 协议与 CLI 命令不因品牌迁移改名。高级用法见 [CLI](references/advanced-usage.md)、[Protocol](protocol.md)、[Testing](references/testing.md)。
 
-### Migrating from an internal build
-
-Earlier internal builds used the working name `chatgpt-codex-closed-loop`.
-The public v1.0.0 skill name is `closed-loop-companion` and its invocation is `$closed-loop-companion`.
-Before installing, move the old internal skill directory outside every discovered skills location, keeping a backup if needed. Then install the new directory and refresh the skill list. Keep one active installation; the old working name is not a second entrypoint or alias.
-
-
-## Repository / file structure
+## 16. 怎么使用
 
 ```text
-closed-loop-companion/
-  SKILL.md                 Agent entrypoint and routing
-  README.md                User guide
-  LICENSE                  Official Apache License 2.0 text
-  SECURITY.md              Safe evidence handling and private reporting
-  CONTRIBUTING.md          Reproduction and contribution guidance
-  CHANGELOG.md             Initial public release history
-  .gitignore               Keep local run data and caches out of source control
-  PUBLISHING.md            Listing copy, release notes and distribution limits
-  VERSION                  Package release label
-  protocol.md              Protocol entrypoint
-  agents/openai.yaml       UI metadata; implicit invocation remains enabled
-  examples/                Short user requests, routes and outcomes
-  references/              Architecture, capability, evidence and protocol details
-  templates/               Contracts, review requests and report templates
-  scripts/closed_loop.py   Existing deterministic local helper
-  tests/test_closed_loop.py
+使用 $ai-operating-partner 完成这个任务。
+目标：为交易页面增加 CSV 导出。
+要求：保留当前筛选和排序，UTF-8，不新增服务端持久化。
+按价值、风险与返工成本选择投入等级，提供实际验证结果与未满足项。
 ```
 
-Actual task logs belong in the user's project, outside the installed/released Skill. No private evidence or build caches belong in a release archive.
+明确选中 Skill 不会把小任务自动升级 FULL。需要真实 ChatGPT 独审时明确说明；只需本地独审时明确限定。完整审查不可用应报告缺口，不暗中降级。
 
-## Advanced configuration
+组合已安装领域 Skill 的示例：
 
-Ordinary users supply goals and constraints, not transport JSON. Coordinating agents and advanced users can follow [CLI usage](references/advanced-usage.md), [protocol](protocol.md) and [testing guidance](references/testing.md). These describe the existing four CLI commands; this release adds no new runtime command or transport backend.
+```text
+Use $marketing-creative-director for domain strategy.
+Use $ai-operating-partner to allocate effort and govern execution, evidence and review.
+```
 
-## License
+领域名称替换为实际可用的 Skill，不假装调用未安装能力。自动选择仍取决于宿主；没有禁用 implicit invocation，也不承诺跨环境自动触发。见 [Invocation](references/invocation.md)。
 
-Licensed under the Apache License 2.0. See [LICENSE](LICENSE) for details.
-本项目采用 Apache License 2.0。
+## 17. Project Evolution
 
-Commercial use is permitted subject to the license terms, including paid services, enterprise integrations, domain packs, consulting and hosted products. This does not promise any such offering. [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+AI Operating Partner was originally developed as `chatgpt-codex-closed-loop`, later renamed `closed-loop-companion`.
 
-## Security / Contribution
+The original project focused on:
 
-Read [SECURITY.md](SECURITY.md) before sharing evidence or reporting a vulnerability.
-Use [CONTRIBUTING.md](CONTRIBUTING.md) for issues and pull requests, with synthetic reproductions and relevant checks.
-Release history is in [CHANGELOG.md](CHANGELOG.md); [PUBLISHING.md](PUBLISHING.md) contains GitHub and later distribution preparation. No public repository, tag, release or directory listing is created by these files.
+```text
+Plan → Execute → Evidence → Review → Repair → Completion Gate
+```
+
+v3 extends that foundation with:
+
+```text
+Operating Partner Identity → Intelligence Capital → Adaptive Allocation
+→ Stop Loss → Long-Term Value
+```
+
+历史命名说明原文保留，仅描述旧版本：
+
+> Earlier internal builds used the working name `chatgpt-codex-closed-loop`.
+> The public v1.0.0 skill name is `closed-loop-companion` and its invocation is `$closed-loop-companion`.
+
+当前正式 ID 和入口只有 `ai-operating-partner` / `$ai-operating-partner`。版本保持 3.0.0 Candidate / R3，不重置、不虚构中间 v2 发布，也不把新包 SHA 当成旧评测对应的原快照。
+
+## 18. Roadmap
+
+当前验收待办是取得获准的真实 ChatGPT 当前快照审查；品牌更新不消除该缺口。
+
+后续优先验证真实任务的路由边界、自然触发与更平衡的资源对照，补足子审查来源捕获。完整动态逐子任务分派仍为 future work，只在新增证据证明价值时推进。
+
+Apache License 2.0；见 [LICENSE](LICENSE)、[Contributing](CONTRIBUTING.md)、[Security](SECURITY.md) 与 [Publishing](PUBLISHING.md)。
+
+> AI Operating Partner is an independent open-source project.
+> It is not affiliated with, endorsed by, or sponsored by OpenAI.
+> ChatGPT, Codex, and OpenAI are trademarks of OpenAI.
+
